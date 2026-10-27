@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Pokédex Fetch</title>
-   <link rel="icon" href="data:," />
+    <meta charset="UTF-8" />
+    <title>Pokédex Fetch</title>
+    <link rel="icon" href="data:," />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-  <h1>Pokédex</h1>
 
-  <form id="search-form">
-    <input id="search-input" placeholder="Name or ID (e.g. pikachu, 25)" />
-    <button type="submit">Search</button>
-  </form>
-
-  <p id="status"></p>
-  <div id="pokemon-card"></div>
-
-  <!-- <h2>Team</h2>
+<body class="bg-red-500">
+    <header class="font-bold text-3xl text-center bg-blue-100 p-2 my-3">
+        <h1>Pokédex</h1>
+    </header>
+    <form id="search-form"  class=" flex flex-col px-3 py-1  text-center mx-auto rounded-xl mt-2">
+        <input id="search-input" placeholder="Name or ID (e.g. pikachu, 25)" class="border p-2 bg-white mb-1 mx-20" />
+        <button type="submit" class=" flex flex-row border px-3 py-1 bg-white text-center mx-auto rounded-xl mt-2">Search</button>
+    </form>
+    <div class="grid h-75 w-100 grid-col-1 gap-8 mx-auto ">
+        <div class="bg-white border-2 border-slate-200 rounded-lg flex-row text-center p-4 place-items-center">
+            <p id="status"></p>
+            <div id="pokemon-card"></div>
+      
+      
+        </div>
+    </div>
+    <!-- <h2>Team</h2>
   <div id="team"></div> -->
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
