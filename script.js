@@ -24,8 +24,9 @@ const renderPokemon = (pokemon) => {
     sprite.width = 160;
     sprite.height = 120; 
     sprite.alt = `${pokemon.name}`; 
+    const pokename = pokemon.name; 
 
-    name.textContent = pokemon.name; 
+    name.textContent = pokename.charAt(0).toUpperCase() + pokename.slice(1); 
     id.textContent = `Id: ${pokemon.id}`; 
     // types.textContent = getTypes(pokemon.types); 
     const allTypes = pokemon.types.map(u => u.type);
