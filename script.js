@@ -5,9 +5,11 @@ const input = document.getElementById("search-input");
 const statusEl = document.getElementById("status");
 const cardEl = document.getElementById("pokemon-card");
 const teamEl = document.getElementById("team");
+const evolveButton = document.getElementById("evolve"); 
 
 const shinyButton = document.getElementById("shiny");
 let shiny = false;
+let evolve = false; 
 //-----functions-----
 
 const renderPokemon = (pokemon) => {
@@ -63,6 +65,7 @@ const renderPokemon = (pokemon) => {
     statusEl.textContent = "";
 
     form.appendChild(statusEl);
+    
 
 }
 
@@ -86,12 +89,48 @@ const errorMessage = () => {
 // }
 
 async function getPokemon(nameOrId) {
-    //console.log("gotta catch them all")
+   // console.log("gotta catch them all")
     nameOrId.preventDefault();
     const pokemon = input.value.trim();
-    const response = await fetch(`${BASE_URL}/pokemon/${pokemon}`);
+
+         const response = await fetch(`${BASE_URL}/pokemon/${pokemon}`);
+   
 
     const result = await response.json();
+    const name = result.name; 
+    //console.log(name); 
+
+     if(evolve){
+       // console.log("Evolve ius true"); 
+        const species = await fetch(`${BASE_URL}/pokemon-species/${result.id}`);
+       //console.log(species); 
+        const speciesData = await species.json(); 
+        //console.log(speciesData); 
+        const newUrl = speciesData.evolution_chain.url; 
+        const evolution = await fetch(newUrl);
+        const evolutionData = await evolution.json(); 
+       console.log(evolutionData.chain.evolves_to[0].species.name); 
+
+        if(name === evolutionData.chain.evolves_to[0].species.name){
+            input.value = evolutionData.chain.evolves_to[0].evolves_to[0].species.name;
+        }
+        else if(name === evolutionData.chain.evolves_to[0].evolves_to[0].species.name){
+             statusEl.textContent = "Already fully Evolved"; 
+                 form.appendChild(statusEl);
+                 return; 
+        }
+        else{
+             input.value = evolutionData.chain.evolves_to[0].species.name; 
+        }
+
+       
+       // console.log(evolutionData.chain.evolves_to[0].evolves_to[0].species.name)
+        // console.log(evolutionData.chain.evolves_to)
+
+    
+        evolve = false; 
+        getPokemon(nameOrId); 
+     }
     //console.log(result.name + result.id);
     if (response.ok) {
         renderPokemon(result);
@@ -107,13 +146,21 @@ const shinyPokemon = (event) => {
     else {
         shiny = false;
     }
-    console.log(shiny);
+    //console.log(shiny);
     getPokemon(event);
+}
+const evolvePokemon = (event) => {
+    evolve = true; 
+    //console.log("working"); 
+   // console.log("running"); 
+    getPokemon(event); 
+
 }
 
 //-----Listeners-----
 form.addEventListener("submit", getPokemon);
 shinyButton.addEventListener("click", shinyPokemon);
+evolveButton.addEventListener("click", evolvePokemon); 
 
 //----Run at Start----
 statusEl.textContent = "No Pokemon has been input";
