@@ -9,3 +9,6 @@ Pokedex Fetch: Async/Await Practice
 Peer Review: Valery Lot
 Review: Code looks great and organized, webpage looks great. However, you forgot to capitalize the first letter of the name in the card seciton. I like the error message part and how it's written as a function.
 
+
+Peer Review 2: Zionn Showers
+Review: Looks really good. I like how you added the option to make a pokemon shiny and make it evolve a certain amount of times. Very nice!
