@@ -15,12 +15,16 @@
     </header>
     <form id="search-form"  class=" flex flex-col px-3 py-1  text-center mx-auto rounded-xl mt-2">
         <input id="search-input" placeholder="Name or ID (e.g. pikachu, 25)" class="border p-2 bg-white mb-1 mx-20" />
-        <button type="submit" class=" flex flex-row border px-3 py-1 bg-white text-center mx-auto rounded-xl mt-2">Search</button>
-    </form>
+       <div class="flex gap-2 mx-auto">
+        <button type="submit" class=" flex flex-row border px-3 py-1 bg-white text-center rounded-xl mt-2">Search</button>
+        <button type="submit" id="shiny" class=" flex flex-row border px-3 py-1 bg-white text-center rounded-xl mt-2">Shiny</button>
+        <button type="submit" id="evolve" class=" flex flex-row border px-3 py-1 bg-white text-center rounded-xl mt-2">Evolve</button>
+   </div>
+ </form>
     <div class="grid h-75 w-100 grid-col-1 gap-8 mx-auto ">
-        <div class="bg-white border-2 border-slate-200 rounded-lg flex-row text-center p-4 place-items-center">
+        <div class="bg-white border-2 border-slate-200 rounded-lg flex-row text-center p-2 place-items-center">
             <p id="status"></p>
-            <div id="pokemon-card"></div>
+            <div id="pokemon-card" ></div>
       
       
         </div>
